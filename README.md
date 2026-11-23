@@ -67,11 +67,30 @@ Skills 与 Host 全局 MCP 合在一个列表里，用「技能 / MCP」药丸�
 
 ## 安装
 
-包目录安装（本地开发）：
+### 从 GitHub 安装（推荐）
+
+`dsh plugin` 是官方插件入口，参数原样转发给 pnpm 并在当前 profile 里执行 `pnpm add`：
+
+```bash
+dsh plugin --profile desktop add github:2532316972/dsh-session-toolkit
+```
+
+把 `desktop` 换成你实际用的 profile 名（`dsh web` 等于 `--profile web`；先跑过 `dsh web`
+或 `dsh headless` 一次，profile 目录才会自动初始化）。
+
+### 从插件市场安装
+
+装好 [dshmarket](https://dshmarket.com) 后，打开 **插件 → 插件市场**，搜
+`dsh-session-toolkit` 点安装即可——市场对 GitHub 源拼的是 `github:2532316972/dsh-session-toolkit`，
+和上面的 CLI 命令是同一条规格。
+
+### 包目录安装（本地开发）
 
 ```
 plugin_manager → action: install_bundle → target: G:\Projects\dsh-session-toolkit
 ```
+
+`install_bundle` 只接受**绝对目录**，不接受包名；用包名安装请走上面两条。
 
 安装后需要**重启 DSH**：客户端 bundle 是 JS 模块，宿主只在启动时求值一次。
 
