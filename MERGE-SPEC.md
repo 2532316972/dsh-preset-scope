@@ -7,7 +7,7 @@
 
 ## 目标包
 
-- 目录：`G:\Projects\dsh-preset-scope`
+- 目录：`G:\Projects\dsh-session-toolkit`
 - 包名 / Cordis 名 / 客户端 loader id：`dsh-preset-scope`
 - 纯 ESM，**无构建链**（没有 rolldown/tsdown/vitest），源码即产物
 
@@ -145,7 +145,7 @@ Node 不在 PATH。测试一律用：
 
 （`--test` 必须给具体文件路径，给目录会 MODULE_NOT_FOUND。）
 
-工作目录：`G:\Projects\dsh-preset-scope`。
+工作目录：`G:\Projects\dsh-session-toolkit`。
 
 ## TDD 纪律
 

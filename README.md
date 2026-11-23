@@ -87,7 +87,7 @@ dsh plugin --profile desktop add github:2532316972/dsh-preset-scope
 ### 包目录安装（本地开发）
 
 ```
-plugin_manager → action: install_bundle → target: G:\Projects\dsh-preset-scope
+plugin_manager → action: install_bundle → target: G:\Projects\dsh-session-toolkit
 ```
 
 `install_bundle` 只接受**绝对目录**，不接受包名；用包名安装请走上面两条。
