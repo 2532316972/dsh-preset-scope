@@ -1,0 +1,13 @@
+# Local runtime state written by the workspace-scope half of this plugin.
+# It describes one developer's machine, not the package.
+.dsh-scope.json
+.dsh-scope.sessions.json
+
+# Never shipped; kept out of the repo on purpose.
+node_modules/
+*.log
+
+# OS noise
+Thumbs.db
+.DS_Store
+desktop.ini

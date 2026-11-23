@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "会话工具箱",
+    "description": "在会话标题栏切换当前会话的 Agent 预设（标准 / PTC / 极简 / 创造），并按工作区、会话或全局粒度收窄 Skills 与 MCP 工具，配置写入工作区内的 .dsh-scope.json。"
+  }
+}

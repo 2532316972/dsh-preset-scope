@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Session toolkit">
+  <defs>
+    <linearGradient id="stk-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2b3a55"/>
+      <stop offset="1" stop-color="#16202f"/>
+    </linearGradient>
+    <linearGradient id="stk-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffcf70"/>
+      <stop offset="1" stop-color="#f0a03c"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#stk-bg)"/>
+  <rect x="3" y="3" width="58" height="58" rx="15" fill="none" stroke="#ffffff" stroke-opacity="0.14" stroke-width="1.5"/>
+
+  <!-- three scope tracks: the bars narrow downward, echoing workspace > session > global -->
+  <g stroke-linecap="round">
+    <line x1="14" y1="21" x2="50" y2="21" stroke="#ffffff" stroke-opacity="0.24" stroke-width="4"/>
+    <line x1="14" y1="32" x2="50" y2="32" stroke="#ffffff" stroke-opacity="0.24" stroke-width="4"/>
+    <line x1="14" y1="43" x2="50" y2="43" stroke="#ffffff" stroke-opacity="0.24" stroke-width="4"/>
+  </g>
+
+  <!-- knobs: the selection handle of each track, offset so the set reads as a live configuration -->
+  <g fill="url(#stk-accent)">
+    <circle cx="42" cy="21" r="6.5"/>
+    <circle cx="30" cy="32" r="6.5"/>
+    <circle cx="20" cy="43" r="6.5"/>
+  </g>
+
+  <!-- a check tick on the top knob: the active preset -->
+  <path d="M39.2 21.1l2.1 2.2 4.1-4.4" fill="none" stroke="#16202f" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
