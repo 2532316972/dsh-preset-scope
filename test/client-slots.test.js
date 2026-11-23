@@ -395,7 +395,7 @@ test('apply installs the stylesheet, and every effect disposes cleanly', () => {
 
 test('the browser half speaks only the merged route prefixes', () => {
 	const source = requireClient();
-	for (const route of ['/session-toolkit/preset', '/session-toolkit/scope/overview', '/session-toolkit/scope/save']) {
+	for (const route of ['/preset-scope/preset', '/preset-scope/scope/overview', '/preset-scope/scope/save']) {
 		assert.ok(source.includes(route), `lib/client.js must call "${route}"`);
 	}
 });
@@ -406,7 +406,7 @@ test('the capability dialog reopens on the tab it was last left on', () => {
 	// "工作区" when storage is unavailable or holds something else.
 	const source = requireClient();
 	assert.ok(
-		source.includes('dsh-session-toolkit.scope-tab'),
+		source.includes('dsh-preset-scope.scope-tab'),
 		'lib/client.js must remember the open tab under a stable localStorage key'
 	);
 	assert.ok(

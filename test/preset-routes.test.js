@@ -150,13 +150,13 @@ test('mountPresetRoutes registers exactly one fenced prefix route', () => {
 	const { ctx, registered, effects } = fakeCtx(fakeServices().services);
 	mountPresetRoutes(ctx);
 
-	assert.equal(PRESET_ROUTE_PREFIX, '/session-toolkit/preset');
+	assert.equal(PRESET_ROUTE_PREFIX, '/preset-scope/preset');
 	assert.equal(registered.length, 1, 'the preset half must register one route');
 	assert.equal(registered[0].kind, 'prefix');
 	assert.equal(registered[0].path, PRESET_ROUTE_PREFIX);
 	assert.equal(typeof registered[0].handler, 'function');
 	assert.equal(effects.length, 1, 'the route registration must be owned by one effect');
-	assert.equal(effects[0].label, 'dsh-session-toolkit: preset routes');
+	assert.equal(effects[0].label, 'dsh-preset-scope: preset routes');
 });
 
 test('a request from an untrusted host is refused before any work happens', async () => {

@@ -1,8 +1,8 @@
 {
-  "name": "dsh-session-toolkit",
+  "name": "dsh-preset-scope",
   "version": "0.1.0",
   "private": true,
-  "description": "Session toolkit for DeepSeek Harness: switch the agent preset of a live session, and scope Skills/MCP capabilities per workspace, session, or globally.",
+  "description": "Preset and scope toolkit for DeepSeek Harness: switch the agent preset of a live session, and scope Skills/MCP capabilities per workspace, session, or globally.",
   "keywords": [
     "dsh",
     "dsh-plugin",

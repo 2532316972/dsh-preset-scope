@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Session toolkit",
+    "title": "Preset & scope",
     "description": "Switch a live session's agent preset (standard, PTC, minimal or creation) from the conversation header, and narrow Skills and MCP tools per workspace, session or globally through a .dsh-scope.json file in the workspace."
   }
 }

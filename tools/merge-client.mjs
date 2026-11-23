@@ -18,7 +18,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const PACKAGE_NAME = 'dsh-session-toolkit';
+const PACKAGE_NAME = 'dsh-preset-scope';
 
 const PRESET_PATH = join(root, 'vendor', 'preset-client.js');
 const SCOPE_PATH = join(root, 'vendor', 'scope-client.js');
@@ -27,14 +27,14 @@ const OUT_PATH = join(root, 'lib', 'client.js');
 /** Route and identity table. Keys are upstream, values are this package. */
 const RENAMES = [
 	// The preset half's own DOM ids, before the generic package id is swept up.
-	['dsh-preset-switcher-overlay', 'dsh-session-toolkit-preset-overlay'],
-	['dsh-preset-switcher-menu', 'dsh-session-toolkit-preset-menu'],
+	['dsh-preset-switcher-overlay', 'dsh-preset-scope-preset-overlay'],
+	['dsh-preset-switcher-menu', 'dsh-preset-scope-preset-menu'],
 	// Route prefixes: both halves move under one namespace.
-	['/preset-switch/api', '/session-toolkit/preset'],
-	['/api/dsh-workspace-scope/overview', '/session-toolkit/scope/overview'],
-	['/api/dsh-workspace-scope/save', '/session-toolkit/scope/save'],
+	['/preset-switch/api', '/preset-scope/preset'],
+	['/api/dsh-workspace-scope/overview', '/preset-scope/scope/overview'],
+	['/api/dsh-workspace-scope/save', '/preset-scope/scope/save'],
 	// Console tag.
-	['[preset-switcher]', '[session-toolkit]'],
+	['[preset-switcher]', '[preset-scope]'],
 	// Stylesheet ownership: tag id, owner id, and the selector that finds it.
 	['dsh-workspace-scope/styles.module.css', `${PACKAGE_NAME}/styles.module.css`],
 	['"dsh-workspace-scope"', `"${PACKAGE_NAME}"`]
@@ -275,7 +275,7 @@ let scopeText = scopeLines.join('\n');
  */
 const REMEMBERED_TAB = [
 	'\t\t/** localStorage key holding the tab left open in this dialog. */',
-	'\t\tvar SCOPE_TAB_KEY = "dsh-session-toolkit.scope-tab";',
+	'\t\tvar SCOPE_TAB_KEY = "dsh-preset-scope.scope-tab";',
 	'\t\t/** Stored tab narrowed to a real one; unreadable storage means 工作区. */',
 	'\t\tfunction readRememberedScopeTab() {',
 	'\t\t\tvar stored = null;',

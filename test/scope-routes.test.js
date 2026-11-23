@@ -26,7 +26,7 @@ import { mountScope, SCOPE_ROUTE_PREFIX } from '../lib/scope.js';
 // touch the real user config.
 const tempDirs = [];
 async function freshGlobalDir() {
-	const dir = await mkdtemp(join(tmpdir(), 'dsh-session-toolkit-'));
+	const dir = await mkdtemp(join(tmpdir(), 'dsh-preset-scope-'));
 	tempDirs.push(dir);
 	process.env.DSH_WORKSPACE_SCOPE_GLOBAL_DIR = dir;
 	return dir;
@@ -278,7 +278,7 @@ async function mountWorld({ globalConfig, workspaceConfig, skills } = {}) {
 test('mountScope registers exactly one prefix route under the merged prefix', async () => {
 	const world = await mountWorld();
 
-	assert.equal(SCOPE_ROUTE_PREFIX, '/session-toolkit/scope', 'the prefix is a published constant');
+	assert.equal(SCOPE_ROUTE_PREFIX, '/preset-scope/scope', 'the prefix is a published constant');
 	assert.equal(world.webServer.registered.length, 1, 'exactly one route is registered');
 	const route = world.webServer.registered[0];
 	assert.equal(route.kind, 'prefix');

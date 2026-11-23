@@ -63,7 +63,7 @@ test('the client bundle registers one loader row named after the package', () =>
 });
 
 test('the host and client modules export that same name', () => {
-	assert.match(host, /\bname\s*=\s*['"]dsh-session-toolkit['"]|export\s*\{[^}]*\bname\b/);
+	assert.match(host, /\bname\s*=\s*['"]dsh-preset-scope['"]|export\s*\{[^}]*\bname\b/);
 	const declared = /const\s+name\s*=\s*(['"])([^'"]+)\1/.exec(host);
 	assert.equal(declared?.[2], manifest.name, 'host `name` must equal the package name');
 

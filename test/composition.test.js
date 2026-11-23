@@ -94,7 +94,7 @@ function fakeHost() {
 }
 
 test('the root exports the cordis entry points under the merged name', () => {
-	assert.equal(mod.name, 'dsh-session-toolkit');
+	assert.equal(mod.name, 'dsh-preset-scope');
 	assert.equal(typeof mod.apply, 'function');
 	assert.ok(Array.isArray(mod.inject));
 });
@@ -112,8 +112,8 @@ test('applying the root mounts both route prefixes', () => {
 	mod.apply(ctx);
 
 	const prefixes = routes.map((route) => route.path);
-	assert.ok(prefixes.includes('/session-toolkit/preset'), 'preset routes must be mounted');
-	assert.ok(prefixes.includes('/session-toolkit/scope'), 'scope routes must be mounted');
+	assert.ok(prefixes.includes('/preset-scope/preset'), 'preset routes must be mounted');
+	assert.ok(prefixes.includes('/preset-scope/scope'), 'scope routes must be mounted');
 	assert.equal(prefixes.length, 2, 'the two prefixes must not be mounted more than once');
 	for (const route of routes) assert.equal(route.kind, 'prefix');
 });
@@ -126,7 +126,7 @@ test('the scope half mounts before the preset half', () => {
 
 	assert.deepEqual(
 		routes.map((route) => route.path),
-		['/session-toolkit/scope', '/session-toolkit/preset']
+		['/preset-scope/scope', '/preset-scope/preset']
 	);
 });
 
@@ -155,7 +155,7 @@ test('a preset switch re-warms the scope policy for that agent', async () => {
 	await new Promise((resolve) => setTimeout(resolve, 0));
 	const readsBeforeSwitch = reads.text;
 
-	const presetRoute = routes.find((route) => route.path === '/session-toolkit/preset');
+	const presetRoute = routes.find((route) => route.path === '/preset-scope/preset');
 	const res = {
 		statusCode: 0,
 		headers: {},

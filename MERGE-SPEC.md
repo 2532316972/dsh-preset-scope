@@ -1,4 +1,4 @@
-# dsh-session-toolkit — 合并规格（内部文档，不随包发布）
+# dsh-preset-scope — 合并规格（内部文档，不随包发布）
 
 把两个 MIT 插件合并成一个包。**不重写逻辑，只搬代码 + 改身份字符串 + 改模块边界。**
 
@@ -7,8 +7,8 @@
 
 ## 目标包
 
-- 目录：`G:\Projects\dsh-session-toolkit`
-- 包名 / Cordis 名 / 客户端 loader id：`dsh-session-toolkit`
+- 目录：`G:\Projects\dsh-preset-scope`
+- 包名 / Cordis 名 / 客户端 loader id：`dsh-preset-scope`
 - 纯 ESM，**无构建链**（没有 rolldown/tsdown/vitest），源码即产物
 
 ## 最终文件布局
@@ -34,27 +34,27 @@
 
 | 用途 | 旧 | 新 |
 | --- | --- | --- |
-| preset API（POST） | `/preset-switch/api` | `/session-toolkit/preset` |
-| scope 概览（GET） | `/api/dsh-workspace-scope/overview` | `/session-toolkit/scope/overview` |
-| scope 保存（POST） | `/api/dsh-workspace-scope/save` | `/session-toolkit/scope/save` |
+| preset API（POST） | `/preset-switch/api` | `/preset-scope/preset` |
+| scope 概览（GET） | `/api/dsh-workspace-scope/overview` | `/preset-scope/scope/overview` |
+| scope 保存（POST） | `/api/dsh-workspace-scope/save` | `/preset-scope/scope/save` |
 
-host 侧 `register({ kind: 'prefix', path: '/session-toolkit/preset' })` 与
-`path: '/session-toolkit/scope'` 两个 prefix 互不覆盖（前缀不同）。
+host 侧 `register({ kind: 'prefix', path: '/preset-scope/preset' })` 与
+`path: '/preset-scope/scope'` 两个 prefix 互不覆盖（前缀不同）。
 
 ## 身份字符串改名表
 
 改这些（纯标识/文案，无行为影响）：
 
-- `name` 常量、`exports.name`、loader `id`、patch row → `dsh-session-toolkit`
-- `exports.name`（客户端）→ `dsh-session-toolkit`
-- 错误信息前缀 `dsh-workspace-scope: ` → `dsh-session-toolkit: `
-- `ctx.effect` 标签 → `dsh-session-toolkit: <用途>`
-- slot `registrant` → `dsh-session-toolkit`
-- 样式标签 `tagId` = `dsh-session-toolkit/styles.module.css`，`ownerId` = `dsh-session-toolkit`，
+- `name` 常量、`exports.name`、loader `id`、patch row → `dsh-preset-scope`
+- `exports.name`（客户端）→ `dsh-preset-scope`
+- 错误信息前缀 `dsh-workspace-scope: ` → `dsh-preset-scope: `
+- `ctx.effect` 标签 → `dsh-preset-scope: <用途>`
+- slot `registrant` → `dsh-preset-scope`
+- 样式标签 `tagId` = `dsh-preset-scope/styles.module.css`，`ownerId` = `dsh-preset-scope`，
   `data-plugin-css` 选择器同步
 - preset 下拉 DOM id：`dsh-preset-switcher-overlay` / `-menu`
-  → `dsh-session-toolkit-preset-overlay` / `-menu`
-- `console.info` 标签 `[preset-switcher]` → `[session-toolkit]`
+  → `dsh-preset-scope-preset-overlay` / `-menu`
+- `console.info` 标签 `[preset-switcher]` → `[preset-scope]`
 - 客户端 CSS 类名前缀 `wsc-` **不改**（纯内部样式，改它要动 900 行，收益为零）
 
 **绝对不要改**（磁盘/兼容接缝）：
@@ -74,7 +74,7 @@ host 侧 `register({ kind: 'prefix', path: '/session-toolkit/preset' })` 与
 导出：
 
 ```js
-export const PRESET_ROUTE_PREFIX = '/session-toolkit/preset';
+export const PRESET_ROUTE_PREFIX = '/preset-scope/preset';
 export function mountPresetRoutes(ctx, hooks) { /* 原 apply 的函数体 */ }
 ```
 
@@ -90,7 +90,7 @@ export function mountPresetRoutes(ctx, hooks) { /* 原 apply 的函数体 */ }
 导出：
 
 ```js
-export const SCOPE_ROUTE_PREFIX = '/session-toolkit/scope';
+export const SCOPE_ROUTE_PREFIX = '/preset-scope/scope';
 export function mountScope(ctx) { /* 原 apply 的函数体 */ return { rewarmAgent }; }
 ```
 
@@ -101,7 +101,7 @@ cleanup 并 delete）、`shadows.drop(agent.id)`、然后 `await warmAgent(agent
 
 ### `lib/client.js`
 
-单一 `window.__ModuleLoader__.load({ id: "dsh-session-toolkit", factory })`。
+单一 `window.__ModuleLoader__.load({ id: "dsh-preset-scope", factory })`。
 一个 `exports.name` / `exports.inject = ["slots"]` / 一个 `exports.apply`。
 两个 half 的 `module`/`exports` 声明只保留一份。
 
@@ -126,7 +126,7 @@ cleanup 并 delete）、`shadows.drop(agent.id)`、然后 `await warmAgent(agent
 除改名外，`lib/client.js` 相对上游唯一的行为改动。上游每次 `useState("workspace")`，
 面板总是跳回「工作区」；改为记住上一次停留的档位：
 
-- 存储：`localStorage` 键 `dsh-session-toolkit.scope-tab`，值域 `"global" | "workspace" | "session"`。
+- 存储：`localStorage` 键 `dsh-preset-scope.scope-tab`，值域 `"global" | "workspace" | "session"`。
 - 读：`readRememberedScopeTab()`，非法值 / 空值 / 存储抛错都回落 `"workspace"`。
 - 写：`rememberScopeTab(scope)`，在 `switchScope` 里调用（不是 effect），try/catch 吞掉存储异常。
 - `ScopeModalSeat` 关闭时卸载 `ScopeModal`，所以挂载期 `useState(readRememberedScopeTab())`
@@ -145,7 +145,7 @@ Node 不在 PATH。测试一律用：
 
 （`--test` 必须给具体文件路径，给目录会 MODULE_NOT_FOUND。）
 
-工作目录：`G:\Projects\dsh-session-toolkit`。
+工作目录：`G:\Projects\dsh-preset-scope`。
 
 ## TDD 纪律
 

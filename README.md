@@ -1,4 +1,4 @@
-# dsh-session-toolkit
+# dsh-preset-scope
 
 两个 DSH 插件合并成一个包：**会话标题栏切换 Agent 预设** + **按工作区 / 会话 / 全局收窄 Skills 与 MCP 工具**。
 
@@ -60,7 +60,7 @@ Skills 与 Host 全局 MCP 合在一个列表里，用「技能 / MCP」药丸�
 
 面板默认打开**上一次停留的那一档**，而不是每次都跳回「工作区」。这是本包相对上游的界面行为改动：
 
-- 值存在 `localStorage` 的 `dsh-session-toolkit.scope-tab`，只认 `global` / `workspace` / `session`。
+- 值存在 `localStorage` 的 `dsh-preset-scope.scope-tab`，只认 `global` / `workspace` / `session`。
 - 值非法、为空或存储被禁用时回落到「工作区」，与上游一致。
 - 记忆是**按浏览器**的阅读位置，不写进任何项目配置文件；换浏览器或清站点数据即回到默认。
 - 打开时若还拿不到会话 id（新建会话尚未落盘），会话那一档回到「工作区」，不会指向不存在的策略。
@@ -72,7 +72,7 @@ Skills 与 Host 全局 MCP 合在一个列表里，用「技能 / MCP」药丸�
 `dsh plugin` 是官方插件入口，参数原样转发给 pnpm 并在当前 profile 里执行 `pnpm add`：
 
 ```bash
-dsh plugin --profile desktop add github:2532316972/dsh-session-toolkit
+dsh plugin --profile desktop add github:2532316972/dsh-preset-scope
 ```
 
 把 `desktop` 换成你实际用的 profile 名（`dsh web` 等于 `--profile web`；先跑过 `dsh web`
@@ -81,13 +81,13 @@ dsh plugin --profile desktop add github:2532316972/dsh-session-toolkit
 ### 从插件市场安装
 
 装好 [dshmarket](https://dshmarket.com) 后，打开 **插件 → 插件市场**，搜
-`dsh-session-toolkit` 点安装即可——市场对 GitHub 源拼的是 `github:2532316972/dsh-session-toolkit`，
+`dsh-preset-scope` 点安装即可——市场对 GitHub 源拼的是 `github:2532316972/dsh-preset-scope`，
 和上面的 CLI 命令是同一条规格。
 
 ### 包目录安装（本地开发）
 
 ```
-plugin_manager → action: install_bundle → target: G:\Projects\dsh-session-toolkit
+plugin_manager → action: install_bundle → target: G:\Projects\dsh-preset-scope
 ```
 
 `install_bundle` 只接受**绝对目录**，不接受包名；用包名安装请走上面两条。
@@ -104,9 +104,9 @@ plugin_manager → action: install_bundle → target: G:\Projects\dsh-session-to
 
 | 项 | 上游 | 本包 |
 | --- | --- | --- |
-| 包名 / loader id | `dsh-preset-switcher`、`dsh-workspace-scope` | `dsh-session-toolkit` |
-| preset API | `POST /preset-switch/api` | `POST /session-toolkit/preset` |
-| scope API | `/api/dsh-workspace-scope/{overview,save}` | `/session-toolkit/scope/{overview,save}` |
+| 包名 / loader id | `dsh-preset-switcher`、`dsh-workspace-scope` | `dsh-preset-scope` |
+| preset API | `POST /preset-switch/api` | `POST /preset-scope/preset` |
+| scope API | `/api/dsh-workspace-scope/{overview,save}` | `/preset-scope/scope/{overview,save}` |
 | 配置文件 | `.dsh-scope.json` | **不变**（磁盘上已有配置继续生效） |
 | 全局目录环境变量 | `DSH_WORKSPACE_SCOPE_GLOBAL_DIR` | **不变** |
 
